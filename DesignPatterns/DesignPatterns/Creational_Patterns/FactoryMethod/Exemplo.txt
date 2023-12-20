@@ -1,0 +1,122 @@
+// Interfaces para produtos abstratos relacionados à autenticação
+public interface IAutenticacaoService
+{
+    string Autenticar(string usuario, string senha);
+}
+
+public interface IAutorizacaoService
+{
+    bool VerificarPermissao(string token);
+}
+
+// Implementações concretas dos produtos relacionados à autenticação para o provedor OAuth2
+public class OAuth2AutenticacaoService : IAutenticacaoService
+{
+    public string Autenticar(string usuario, string senha)
+    {
+        // Lógica de autenticação OAuth2
+        return "TokenOAuth2";
+    }
+}
+
+public class OAuth2AutorizacaoService : IAutorizacaoService
+{
+    public bool VerificarPermissao(string token)
+    {
+        // Lógica de autorização OAuth2
+        return true;
+    }
+}
+
+// Implementações concretas dos produtos relacionados à autenticação para o provedor JWT
+public class JwTAutenticacaoService : IAutenticacaoService
+{
+    public string Autenticar(string usuario, string senha)
+    {
+        // Lógica de autenticação JWT
+        return "TokenJWT";
+    }
+}
+
+public class JwTAutorizacaoService : IAutorizacaoService
+{
+    public bool VerificarPermissao(string token)
+    {
+        // Lógica de autorização JWT
+        return true;
+    }
+}
+
+// Interface para a fábrica abstrata
+public interface IAutenticacaoFactory
+{
+    IAutenticacaoService CriarAutenticacaoService();
+    IAutorizacaoService CriarAutorizacaoService();
+}
+
+// Implementações concretas da fábrica para os provedores de autenticação OAuth2
+public class OAuth2Factory : IAutenticacaoFactory
+{
+    public IAutenticacaoService CriarAutenticacaoService()
+    {
+        return new OAuth2AutenticacaoService();
+    }
+
+    public IAutorizacaoService CriarAutorizacaoService()
+    {
+        return new OAuth2AutorizacaoService();
+    }
+}
+
+// Implementações concretas da fábrica para os provedores de autenticação JWT
+public class JWTFactory : IAutenticacaoFactory
+{
+    public IAutenticacaoService CriarAutenticacaoService()
+    {
+        return new JwTAutenticacaoService();
+    }
+
+    public IAutorizacaoService CriarAutorizacaoService()
+    {
+        return new JwTAutorizacaoService();
+    }
+}
+
+// Cliente que utiliza a fábrica
+public class AutenticacaoClient
+{
+    private IAutenticacaoService autenticacaoService;
+    private IAutorizacaoService autorizacaoService;
+
+    public AutenticacaoClient(IAutenticacaoFactory factory)
+    {
+        autenticacaoService = factory.CriarAutenticacaoService();
+        autorizacaoService = factory.CriarAutorizacaoService();
+    }
+
+    public void ExecutarAutenticacao(string usuario, string senha)
+    {
+        string token = autenticacaoService.Autenticar(usuario, senha);
+        bool permissao = autorizacaoService.VerificarPermissao(token);
+
+        Console.WriteLine($"Autenticação bem-sucedida. Token: {token}, Permissão: {permissao}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Utilizando a fábrica concreta para criar produtos relacionados à autenticação OAuth2
+        IAutenticacaoFactory oauth2Factory = new OAuth2Factory();
+        AutenticacaoClient oauth2Client = new AutenticacaoClient(oauth2Factory);
+        oauth2Client.ExecutarAutenticacao("usuario", "senha");
+
+        Console.WriteLine();
+
+        // Utilizando a fábrica concreta para criar produtos relacionados à autenticação JWT
+        IAutenticacaoFactory jwtFactory = new JWTFactory();
+        AutenticacaoClient jwtClient = new AutenticacaoClient(jwtFactory);
+        jwtClient.ExecutarAutenticacao("usuario", "senha");
+    }
+}

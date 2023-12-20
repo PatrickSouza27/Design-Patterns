@@ -1,0 +1,62 @@
+﻿
+################## Fazer direto no program ################
+
+using DesignPatterns.Creational_Patterns.AbstractFactory.Real_world3.AbstractFactory;
+using DesignPatterns.Creational_Patterns.AbstractFactory.Real_world3.Factory;
+
+ContinentFactory continent = new ContinentAfrican();
+var carnivore = continent.CreateCarnivore();
+var herbivore = continent.CreateHerbivore();
+
+carnivore.Eat(herbivore);
+
+
+######################### Ou fazer uma classe crient abstrada ###############
+
+class AnimalWorld
+    {
+        private Herbivore _herbivore;
+        private Carnivore _carnivore;
+        // Constructor
+        public AnimalWorld(ContinentFactory factory)
+        {
+            _carnivore = factory.CreateCarnivore();
+            _herbivore = factory.CreateHerbivore();
+        }
+        public void RunFoodChain()
+        {
+            _carnivore.Eat(_herbivore);
+        }
+    }
+
+
+public static void Main()
+        {
+            // Create and run the African animal world
+            ContinentFactory africa = new AfricaFactory();
+            AnimalWorld world = new AnimalWorld(africa);
+            world.RunFoodChain();
+
+
+            // Create and run the American animal world
+            ContinentFactory america = new AmericaFactory();
+            world = new AnimalWorld(america);
+            world.RunFoodChain();
+
+
+
+            // Wait for user input
+            Console.ReadKey();
+        }
+
+
+
+
+
+
+
+
+ContinentFactory continent = new ContinentAfrican();
+AnimalWorld animal = new AnimalWorld(continent);
+animal.RunFoodChain();
+
