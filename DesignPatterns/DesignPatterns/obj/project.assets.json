@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DevCourse\\DesignPatterns\\DesignPatterns\\DesignPatterns.csproj",
+      "projectUniqueName": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DesignPatterns\\DesignPatterns\\DesignPatterns.csproj",
       "projectName": "DesignPatterns",
-      "projectPath": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DevCourse\\DesignPatterns\\DesignPatterns\\DesignPatterns.csproj",
+      "projectPath": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DesignPatterns\\DesignPatterns\\DesignPatterns.csproj",
       "packagesPath": "C:\\Users\\Patrick\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DevCourse\\DesignPatterns\\DesignPatterns\\obj\\",
+      "outputPath": "C:\\Users\\Patrick\\Desktop\\Arquitetura de Software\\DesignPatterns\\DesignPatterns\\DesignPatterns\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
