@@ -1,4 +1,4 @@
-﻿using DesignPatterns.Creational_Patterns.FactoryMethod.Excercicio.Interface;
+﻿using DesignPatterns.Creational_Patterns.Singleton.Exercicio;
 
 new Client().Main();
 
